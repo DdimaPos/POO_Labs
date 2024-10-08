@@ -1,5 +1,5 @@
 # Typerscript solution
-## Installation
+### Installation and run
 1. 
 ```bash
 cd ts_solution
