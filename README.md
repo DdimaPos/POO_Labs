@@ -28,10 +28,10 @@ Programming languages in which the solution to the problem will be provided:
 - C#
   - [x] Read the source file
   - [x] Deserialize the json into list of objects by class
-  - [ ] Create classes that will hold information about classification values for each universe
+  - [x] Create classes that will hold information about classification values for each universe
   - [ ] Initialize lists of creatures by universes
-  - [ ] Go through all objects and determine number of point for each universe
-  - [ ] Determine the highest grade and put the creature in corresponding list of creatures by universe
+  - [x] Go through all objects and determine number of point for each universe
+  - [x] Determine the highest grade and put the creature in corresponding list of creatures by universe
   - [ ] Go through each list by universes and save into a json file.
 
 Further commits will be in `oop-intro-classification-system` branch
