@@ -1,0 +1,47 @@
+
+# Build results
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+build/
+bld/
+Bin/
+[Bb]in/
+Obj/
+[Oo]bj/
+[Ll]og/
+[Ll]ogs/
+
+# Visual Studio 2019/2022
+.vs/
+
+# User-specific files
+*.rsuser
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Auto-generated files
+Generated\ Files/
+nupkg/
+*.nupkg
+*.snupkg
+*.localhistory
+project.lock.json
+project.fragment.lock.json
+
+# Package and publish results
+*.Publish.xml
+*.pubxml
+*.pubxml.user
+.vscode/
+.vscode/testdata/
+
+# Rider/JetBrains IDE
+.idea/
+*.sln.iml
+
+# ASP.NET Scaffolding
+ScaffoldingReadMe.txt
