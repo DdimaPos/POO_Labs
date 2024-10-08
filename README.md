@@ -5,4 +5,4 @@ Languages in which the solution to the problem will be provided
 - [ ] Typescript
 - [ ] C#
 
-Further commits will be in `dev` branch
+Further commits will be in `oop-intro-classification-system` branch
