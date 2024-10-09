@@ -1,4 +1,5 @@
 import * as input from "./resources/input.json";
+import * as fs from "fs";
 import {
   MarvelUniverse,
   StarWarsUniverse,
@@ -35,38 +36,40 @@ class CreaturesLists {
 }
 
 class Program {
+  private static saveToFile(filename: string, data: any): void {
+    fs.writeFile(filename, JSON.stringify(data, null, 2), (err) => {
+      if (err) {
+        console.error(`Error writing file ${filename}:`, err);
+      } else {
+        console.log(`File ${filename} has been saved.`);
+      }
+    });
+  }
   public static Classification(val: Creature): string {
     var marvelness = 0,
       ringness = 0,
       hitchness = 0,
       starwarness = 0;
-    //check planet
     if (val.planet != undefined) {
-      if (MarvelUniverse.Planets.indexOf(val.planet)!==-1) marvelness++;
-      if (HitchhickersUniverse.Planets.indexOf(val.planet)!==-1) hitchness++;
-      if (StarWarsUniverse.Planets.indexOf(val.planet)!==-1) starwarness++;
-      if (LordOfTheRingsUniverse.Planets.indexOf(val.planet)!==-1) ringness++;
+      if (MarvelUniverse.Planets.indexOf(val.planet) !== -1) marvelness++;
+      if (HitchhickersUniverse.Planets.indexOf(val.planet) !== -1) hitchness++;
+      if (StarWarsUniverse.Planets.indexOf(val.planet) !== -1) starwarness++;
+      if (LordOfTheRingsUniverse.Planets.indexOf(val.planet) !== -1) ringness++;
     }
     if (val.traits != undefined)
       val.traits.forEach((trait) => {
-        if (MarvelUniverse.Traits.indexOf(trait)!==-1) marvelness++;
-        if (StarWarsUniverse.Traits.indexOf(trait)!==-1)starwarness++;
-        if (HitchhickersUniverse.Traits.indexOf(trait)!==-1) hitchness++;
-        if (LordOfTheRingsUniverse.Traits.indexOf(trait)!==-1) ringness++;
+        if (MarvelUniverse.Traits.indexOf(trait) !== -1) marvelness++;
+        if (StarWarsUniverse.Traits.indexOf(trait) !== -1) starwarness++;
+        if (HitchhickersUniverse.Traits.indexOf(trait) !== -1) hitchness++;
+        if (LordOfTheRingsUniverse.Traits.indexOf(trait) !== -1) ringness++;
       });
     if (val.planet != undefined) {
-      //marvel
-      //if(creature.planet == "Earth" && creature.age <= MarvelUniverse.EarthMaxAge) marvelness++;
       if (val.planet == "Asgard" && val.age <= MarvelUniverse.AsgardianMaxAge)
         marvelness++;
-      //starwars
-
       if (val.planet == "Kashyyk" && val.age <= StarWarsUniverse.WookieMaxAge)
         starwarness++;
       if (val.planet == "Endor" && val.age <= StarWarsUniverse.EwokMaxAge)
         starwarness++;
-
-      //hitchhickers
       if (
         val.planet == "Betelgeuse" &&
         val.age <= HitchhickersUniverse.BetelgeusianMaxAge
@@ -77,7 +80,6 @@ class Program {
         val.age <= HitchhickersUniverse.VogonMaxAge
       )
         hitchness++;
-      //lord of the rings
       if (
         val.planet == "Earth" &&
         val.age <= LordOfTheRingsUniverse.DwarfMaxAge
@@ -131,7 +133,11 @@ class Program {
           break;
       }
     });
-    console.log(creaturesLists);
+    console.log(creaturesLists); 
+    Program.saveToFile("./resources/MarvelCreatures.json", creaturesLists.Marvel);
+    Program.saveToFile("./resources/StarWarsCreatures.json", creaturesLists.Star_Wars);
+    Program.saveToFile("./resources/HitchhickersCreatures.json", creaturesLists.Hitchhickers);
+    Program.saveToFile("./resources/LordOfRingsCreatures.json",creaturesLists.Lord_of_rings);
   }
 }
 

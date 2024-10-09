@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var input = require("./resources/input.json");
+var fs = require("fs");
 var UniverseDefs_1 = require("./UniverseDefs");
 var Creature = /** @class */ (function () {
     function Creature(id, isHumanoid, planet, age, traits) {
@@ -24,9 +25,18 @@ var CreaturesLists = /** @class */ (function () {
 var Program = /** @class */ (function () {
     function Program() {
     }
+    Program.saveToFile = function (filename, data) {
+        fs.writeFile(filename, JSON.stringify(data, null, 2), function (err) {
+            if (err) {
+                console.error("Error writing file ".concat(filename, ":"), err);
+            }
+            else {
+                console.log("File ".concat(filename, " has been saved."));
+            }
+        });
+    };
     Program.Classification = function (val) {
         var marvelness = 0, ringness = 0, hitchness = 0, starwarness = 0;
-        //check planet
         if (val.planet != undefined) {
             if (UniverseDefs_1.MarvelUniverse.Planets.indexOf(val.planet) !== -1)
                 marvelness++;
@@ -49,23 +59,18 @@ var Program = /** @class */ (function () {
                     ringness++;
             });
         if (val.planet != undefined) {
-            //marvel
-            //if(creature.planet == "Earth" && creature.age <= MarvelUniverse.EarthMaxAge) marvelness++;
             if (val.planet == "Asgard" && val.age <= UniverseDefs_1.MarvelUniverse.AsgardianMaxAge)
                 marvelness++;
-            //starwars
             if (val.planet == "Kashyyk" && val.age <= UniverseDefs_1.StarWarsUniverse.WookieMaxAge)
                 starwarness++;
             if (val.planet == "Endor" && val.age <= UniverseDefs_1.StarWarsUniverse.EwokMaxAge)
                 starwarness++;
-            //hitchhickers
             if (val.planet == "Betelgeuse" &&
                 val.age <= UniverseDefs_1.HitchhickersUniverse.BetelgeusianMaxAge)
                 hitchness++;
             if (val.planet == "Vogsphere" &&
                 val.age <= UniverseDefs_1.HitchhickersUniverse.VogonMaxAge)
                 hitchness++;
-            //lord of the rings
             if (val.planet == "Earth" &&
                 val.age <= UniverseDefs_1.LordOfTheRingsUniverse.DwarfMaxAge)
                 ringness++;
@@ -104,7 +109,11 @@ var Program = /** @class */ (function () {
                     break;
             }
         });
-        console.log(creaturesLists);
+        console.log(creaturesLists); // Save each universe's creature list to its own file
+        Program.saveToFile("./resources/MarvelCreatures.json", creaturesLists.Marvel);
+        Program.saveToFile("./resources/StarWarsCreatures.json", creaturesLists.Star_Wars);
+        Program.saveToFile("./resources/HitchhickersCreatures.json", creaturesLists.Hitchhickers);
+        Program.saveToFile("./resources/LordOfRingsCreatures.json", creaturesLists.Lord_of_rings);
     };
     return Program;
 }());

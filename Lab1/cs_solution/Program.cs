@@ -27,13 +27,10 @@ class Program
         }
 
         //marvel
-        //if(creature.planet == "Earth" && creature.age <= MarvelUniverse.EarthMaxAge) marvelness++;
         if (creature.planet == "Asgard" && creature.age <= MarvelUniverse.AsgardianMaxAge) marvelness++;
         //starwars
-
         if (creature.planet == "Kashyyk" && creature.age <= StarWarsUniverse.WookieMaxAge) starwarness++;
         if (creature.planet == "Endor" && creature.age <= StarWarsUniverse.EwokMaxAge) starwarness++;
-
         //hitchhickers
         if (creature.planet == "Betelgeuse" && creature.age <= HitchhikersUniverse.BetelgeusianMaxAge) hitchness++;
         if (creature.planet == "Vogsphere" && creature.age <= HitchhikersUniverse.VogonMaxAge) hitchness++;
@@ -114,7 +111,6 @@ public class Root
 {
     //tell C# to convert 'input' property from input file to Input property in class 
     [JsonProperty("input")]
-    //list of creatures objects
     public List<Creature> Input { get; set; }
 }
 public class CreaturesLists
