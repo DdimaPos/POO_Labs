@@ -18,8 +18,8 @@ if(creature.planet == "earth"){
 Programming languages in which the solution to the problem will be provided:
 
 - Typescript 
-  - [ ] Read the source file
-  - [ ] Deserialize the json into list of objects by class
+  - [x] Read the source file
+  - [x] Deserialize the json into list of objects by class
   - [ ] Create classes that will hold information about classification values for each universe
   - [ ] Initialize lists of creatures by universes
   - [ ] Go through all objects and determine number of point for each universe

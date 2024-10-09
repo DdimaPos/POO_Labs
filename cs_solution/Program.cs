@@ -94,12 +94,10 @@ class Program
     }
     static void SaveUniverseToJson(List<Creature> creatures, string universeName)
     {
-        // Create the JSON string
         string json = JsonConvert.SerializeObject(creatures, Formatting.Indented);
 
-        // Generate a filename based on the universe name
         string filename = $"./resources/{universeName}_creatures.json";
-        // Write the JSON to the file
+
         File.WriteAllText(filename, json);
     }
 }
