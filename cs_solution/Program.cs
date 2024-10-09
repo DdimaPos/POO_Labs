@@ -50,39 +50,57 @@ class Program
         return "undetermined";
     }
 
-    static void Main(string[] args){
+    static void Main(string[] args)
+    {
         string path = "./resources/input.json";
         string fileContent = File.ReadAllText(path);
 
         //deserialize the content
         var deserializedObject = JsonConvert.DeserializeObject<Root>(fileContent);
-        var creatureLists=new CreaturesLists{
+        //save the creatures by their own lists
+        var creatureLists = new CreaturesLists
+        {
             Star_wars = new List<Creature>(),
-            Marvel= new List<Creature>(),
+            Marvel = new List<Creature>(),
             Lord_of_Rings = new List<Creature>(),
             Hitchhickers = new List<Creature>()
         };
-        foreach (var val in deserializedObject.Input){
-            switch (ClassifyCreatures(val)){
+        foreach (var val in deserializedObject.Input)
+        {
+            switch (ClassifyCreatures(val))
+            {
                 case "Marvel":
                     creatureLists.Marvel.Add(val);
                     //push to marvel list
-                break;
+                    break;
                 case "Star Wars":
                     creatureLists.Star_wars.Add(val);
                     //push to Star wars list
-                break;
-                case "Lords of the Rings":
+                    break;
+                case "Lord of the Rings":
                     creatureLists.Lord_of_Rings.Add(val);
                     //push to Lord of the rings list
-                break;
-                case "Hitchhicker's Guide":
+                    break;
+                case "Hitchhiker's Guide":
                     creatureLists.Hitchhickers.Add(val);
                     //push to Hitchh list
-                break;
+                    break;
             }
         }
-        
+        SaveUniverseToJson(creatureLists.Marvel, "Marvel");
+        SaveUniverseToJson(creatureLists.Star_wars, "Star_Wars");
+        SaveUniverseToJson(creatureLists.Lord_of_Rings, "Lord_of_the_Rings");
+        SaveUniverseToJson(creatureLists.Hitchhickers, "Hitchhickers");
+    }
+    static void SaveUniverseToJson(List<Creature> creatures, string universeName)
+    {
+        // Create the JSON string
+        string json = JsonConvert.SerializeObject(creatures, Formatting.Indented);
+
+        // Generate a filename based on the universe name
+        string filename = $"./resources/{universeName}_creatures.json";
+        // Write the JSON to the file
+        File.WriteAllText(filename, json);
     }
 }
 public class Creature
@@ -101,9 +119,10 @@ public class Root
     //list of creatures objects
     public List<Creature> Input { get; set; }
 }
-public class CreaturesLists{
-    public List<Creature> Star_wars{get; set;}
-    public List<Creature> Marvel{get; set;}
-    public List<Creature> Lord_of_Rings{get; set;}
-    public List<Creature> Hitchhickers{get; set;}
+public class CreaturesLists
+{
+    public List<Creature> Star_wars { get; set; }
+    public List<Creature> Marvel { get; set; }
+    public List<Creature> Lord_of_Rings { get; set; }
+    public List<Creature> Hitchhickers { get; set; }
 }
