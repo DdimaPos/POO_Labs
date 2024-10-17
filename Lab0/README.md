@@ -39,6 +39,6 @@ Programming languages in which the solution to the problem will be provided:
   - [x] Go through each list by universes and save into a json file.
 
 Cases to consider:
-  - [ ] Push to an UndefinedUniverse array if some of the counters are equal.
+  - [x] Push to an UndefinedUniverse array if some of the counters are equal.
 
 Further commits will be in `oop-intro-classification-system` branch
