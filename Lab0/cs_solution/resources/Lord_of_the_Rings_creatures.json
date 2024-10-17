@@ -35,5 +35,14 @@
       "SHORT",
       "BULKY"
     ]
+  },
+  {
+    "id": 20,
+    "isHumanoid": true,
+    "planet": null,
+    "age": null,
+    "traits": [
+      "BULKY"
+    ]
   }
 ]

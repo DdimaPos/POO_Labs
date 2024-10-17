@@ -1,12 +1,7 @@
 import * as input from "./resources/input.json";
 import * as fs from "fs";
-import {
-    MarvelUniverse,
-    StarWarsUniverse,
-    HitchhickersUniverse,
-    LordOfTheRingsUniverse,
-} from "./UniverseDefs";
-class Creature {
+import { Clasify } from "./Classify";
+export class Creature {
     id: number;
     isHumanoid: boolean | undefined;
     planet: string | undefined;
@@ -35,68 +30,6 @@ class CreaturesLists {
     Lord_of_rings: Creature[] = [];
 }
 
-class Clasify {
-    public static Classification(val: Creature): string {
-        var marvelness = 0,
-            ringness = 0,
-            hitchness = 0,
-            starwarness = 0,
-            numberOfMaxPoints = 0;
-
-        if (val.planet != undefined) {
-            if (MarvelUniverse.Planets.indexOf(val.planet) !== -1) marvelness++;
-            if (HitchhickersUniverse.Planets.indexOf(val.planet) !== -1) hitchness++;
-            if (StarWarsUniverse.Planets.indexOf(val.planet) !== -1) starwarness++;
-            if (LordOfTheRingsUniverse.Planets.indexOf(val.planet) !== -1) ringness++;
-        }
-
-        if (val.traits != undefined)
-            val.traits.forEach((trait) => {
-                if (MarvelUniverse.Traits.indexOf(trait) !== -1) marvelness++;
-                if (StarWarsUniverse.Traits.indexOf(trait) !== -1) starwarness++;
-                if (HitchhickersUniverse.Traits.indexOf(trait) !== -1) hitchness++;
-                if (LordOfTheRingsUniverse.Traits.indexOf(trait) !== -1) ringness++;
-            });
-
-        if (val.isHumanoid != undefined && val.isHumanoid) {
-            marvelness++;
-            hitchness++;
-            ringness++;
-        } else {
-            starwarness++;
-            hitchness++;
-        }
-
-        if (val.age <= MarvelUniverse.AsgardianMaxAge) marvelness++;
-        if (val.age <= StarWarsUniverse.WookieMaxAge || val.age <= StarWarsUniverse.EwokMaxAge) starwarness++;
-        if (val.age <= HitchhickersUniverse.BetelgeusianMaxAge || val.age <= HitchhickersUniverse.VogonMaxAge) hitchness++;
-        if (val.age <= LordOfTheRingsUniverse.DwarfMaxAge) ringness++;
-
-        var maxPoints: number = Math.max(
-            Math.max(marvelness, starwarness),
-            Math.max(ringness, hitchness),
-        );
-        if (marvelness == maxPoints) numberOfMaxPoints++;
-        if (starwarness == maxPoints) numberOfMaxPoints++;
-        if (ringness == maxPoints) numberOfMaxPoints++;
-        if (hitchness == maxPoints) numberOfMaxPoints++;
-
-        //if there is more than one max value, return "undetermined"
-        if (numberOfMaxPoints > 1) return "undetermined";
-
-        switch (maxPoints) {
-            case marvelness:
-                return "Marvel";
-            case starwarness:
-                return "Star Wars";
-            case hitchness:
-                return "Hitchhickers";
-            case ringness:
-                return "Lord of Rings";
-        }
-        return "undetermined";
-    }
-}
 class Program {
     private static saveToFile(filename: string, data: any): void {
         fs.writeFile(filename, JSON.stringify(data, null, 2), (err) => {
@@ -139,7 +72,6 @@ class Program {
                     break;
             }
         });
-        console.log(creaturesLists);
         Program.saveToFile(
             "./resources/MarvelCreatures.json",
             creaturesLists.Marvel,

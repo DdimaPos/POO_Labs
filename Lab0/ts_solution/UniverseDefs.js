@@ -6,7 +6,6 @@ var MarvelUniverse = /** @class */ (function () {
     }
     MarvelUniverse.Planets = ["Asgard"];
     MarvelUniverse.Traits = ["BLONDE", "TALL"];
-    MarvelUniverse.EarthMaxAge = 100;
     MarvelUniverse.AsgardianMaxAge = 5000;
     MarvelUniverse.isHumanoid = true;
     return MarvelUniverse;

@@ -1,7 +1,6 @@
 export class MarvelUniverse {
   static Planets: string[] = ["Asgard"];
   static Traits: string[] = ["BLONDE", "TALL"];
-  static EarthMaxAge: number = 100;
   static AsgardianMaxAge: number = 5000;
   static isHumanoid: boolean = true;
 }
