@@ -20,30 +20,19 @@
     ]
   },
   {
+    "id": 12,
+    "isHumanoid": true,
+    "planet": null,
+    "age": 7523,
+    "traits": null
+  },
+  {
     "id": 13,
     "isHumanoid": null,
     "planet": "Earth",
     "age": null,
     "traits": [
       "SHORT",
-      "BULKY"
-    ]
-  },
-  {
-    "id": 18,
-    "isHumanoid": false,
-    "planet": null,
-    "age": null,
-    "traits": [
-      "BULKY"
-    ]
-  },
-  {
-    "id": 20,
-    "isHumanoid": true,
-    "planet": null,
-    "age": null,
-    "traits": [
       "BULKY"
     ]
   }

@@ -20,13 +20,6 @@
     ]
   },
   {
-    "id": 12,
-    "isHumanoid": true,
-    "planet": null,
-    "age": 7523,
-    "traits": null
-  },
-  {
     "id": 16,
     "isHumanoid": true,
     "planet": null,

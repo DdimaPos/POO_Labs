@@ -3,50 +3,57 @@ using Newtonsoft.Json;
 //classes for each universe
 using UniverseDefinition;
 
-class Program
+class Clasify
 {
-    static string ClassifyCreatures(Creature creature)
-    {
-        int marvelness = 0, starwarness = 0, hitchness = 0, ringness = 0;
+    public static string ClassifyCreatures(Creature creature){
+        int marvelness = 0, starwarness = 0, hitchness = 0, ringness = 0, numberOfMaxPoints = 0;
 
         //check planet
-        if (creature.planet != null)
-        {
+        if (creature.planet != null){
             if (MarvelUniverse.Planets.Contains(creature.planet)) marvelness++;
             if (StarWarsUniverse.Planets.Contains(creature.planet)) starwarness++;
             if (HitchhikersUniverse.Planets.Contains(creature.planet)) hitchness++;
             if (LordOfTheRingsUniverse.Planets.Contains(creature.planet)) ringness++;
         }
         //check traits
-        foreach (var trait in creature.traits ?? Array.Empty<string>())
-        {
+        foreach (var trait in creature.traits ?? Array.Empty<string>()){
             if (MarvelUniverse.Traits.Contains(trait)) marvelness++;
             if (StarWarsUniverse.Traits.Contains(trait)) starwarness++;
             if (LordOfTheRingsUniverse.Traits.Contains(trait)) ringness++;
             if (HitchhikersUniverse.Traits.Contains(trait)) hitchness++;
         }
-
-        //marvel
-        if (creature.planet == "Asgard" && creature.age <= MarvelUniverse.AsgardianMaxAge) marvelness++;
-        //starwars
-        if (creature.planet == "Kashyyk" && creature.age <= StarWarsUniverse.WookieMaxAge) starwarness++;
-        if (creature.planet == "Endor" && creature.age <= StarWarsUniverse.EwokMaxAge) starwarness++;
-        //hitchhickers
-        if (creature.planet == "Betelgeuse" && creature.age <= HitchhikersUniverse.BetelgeusianMaxAge) hitchness++;
-        if (creature.planet == "Vogsphere" && creature.age <= HitchhikersUniverse.VogonMaxAge) hitchness++;
-        //lord of the rings
-        if (creature.planet == "Earth" && creature.age <= LordOfTheRingsUniverse.DwarfMaxAge) ringness++;
-
+        //check isHumanoid
+        if (creature.isHumanoid != null && (bool)creature.isHumanoid){
+            marvelness++; hitchness++; ringness++;
+        }
+        else{
+            starwarness++; hitchness++;
+        }
+        //check age
+        if (creature.age <= MarvelUniverse.AsgardianMaxAge) marvelness++;
+        if (creature.age <= StarWarsUniverse.WookieMaxAge || creature.age <= StarWarsUniverse.EwokMaxAge) starwarness++;
+        if (creature.age <= HitchhikersUniverse.BetelgeusianMaxAge || creature.age <= HitchhikersUniverse.VogonMaxAge) hitchness++;
+        if (creature.age <= LordOfTheRingsUniverse.DwarfMaxAge || creature.age <= LordOfTheRingsUniverse.ElfMaxAge) ringness++;
 
         int maxPoints = Math.Max(Math.Max(marvelness, starwarness), Math.Max(ringness, hitchness));
+        
+        if (marvelness == maxPoints) numberOfMaxPoints++;
+        if (starwarness == maxPoints) numberOfMaxPoints++;
+        if (ringness == maxPoints) numberOfMaxPoints++;
+        if (hitchness == maxPoints) numberOfMaxPoints++;
 
+        //if there is more than one max value, return "undetermined"
+        if (numberOfMaxPoints > 1) return "undetermined";
+        
         if (maxPoints == marvelness) return "Marvel";
         if (maxPoints == starwarness) return "Star Wars";
         if (maxPoints == ringness) return "Lord of the Rings";
         if (maxPoints == hitchness) return "Hitchhiker's Guide";
         return "undetermined";
     }
-
+}
+class Program
+{
     static void Main(string[] args)
     {
         string path = "./resources/input.json";
@@ -64,23 +71,22 @@ class Program
         };
         foreach (var val in deserializedObject.Input)
         {
-            switch (ClassifyCreatures(val))
+            switch (Clasify.ClassifyCreatures(val))
             {
                 case "Marvel":
                     creatureLists.Marvel.Add(val);
-                    //push to marvel list
                     break;
                 case "Star Wars":
                     creatureLists.Star_wars.Add(val);
-                    //push to Star wars list
                     break;
                 case "Lord of the Rings":
                     creatureLists.Lord_of_Rings.Add(val);
-                    //push to Lord of the rings list
                     break;
                 case "Hitchhiker's Guide":
                     creatureLists.Hitchhickers.Add(val);
-                    //push to Hitchh list
+                    break;
+                default:
+                    Console.WriteLine($"Unknown universe: ${val.id}");
                     break;
             }
         }
@@ -109,7 +115,6 @@ public class Creature
 
 public class Root
 {
-    //tell C# to convert 'input' property from input file to Input property in class 
     [JsonProperty("input")]
     public List<Creature> Input { get; set; }
 }

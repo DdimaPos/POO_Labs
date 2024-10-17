@@ -51,13 +51,6 @@
     ]
   },
   {
-    "id": 20,
-    "isHumanoid": true,
-    "traits": [
-      "BULKY"
-    ]
-  },
-  {
     "id": 21,
     "age": 82,
     "traits": [

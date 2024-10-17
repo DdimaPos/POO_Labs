@@ -2,7 +2,6 @@ namespace UniverseDefinition{
     public class MarvelUniverse{
         public static List<string> Planets = new List<string> { "Asgard"};//, "Earth", };
         public static List<string> Traits = new List<string> { "BLONDE", "TALL"};
-        public static int EarthMaxAge=100;
         public static int AsgardianMaxAge = 5000;
         public static bool isHumanoid = true;
     }

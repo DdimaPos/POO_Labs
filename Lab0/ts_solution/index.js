@@ -22,21 +22,11 @@ var CreaturesLists = /** @class */ (function () {
     }
     return CreaturesLists;
 }());
-var Program = /** @class */ (function () {
-    function Program() {
+var Clasify = /** @class */ (function () {
+    function Clasify() {
     }
-    Program.saveToFile = function (filename, data) {
-        fs.writeFile(filename, JSON.stringify(data, null, 2), function (err) {
-            if (err) {
-                console.error("Error writing file ".concat(filename, ":"), err);
-            }
-            else {
-                console.log("File ".concat(filename, " has been saved."));
-            }
-        });
-    };
-    Program.Classification = function (val) {
-        var marvelness = 0, ringness = 0, hitchness = 0, starwarness = 0;
+    Clasify.Classification = function (val) {
+        var marvelness = 0, ringness = 0, hitchness = 0, starwarness = 0, numberOfMaxPoints = 0;
         if (val.planet != undefined) {
             if (UniverseDefs_1.MarvelUniverse.Planets.indexOf(val.planet) !== -1)
                 marvelness++;
@@ -58,24 +48,35 @@ var Program = /** @class */ (function () {
                 if (UniverseDefs_1.LordOfTheRingsUniverse.Traits.indexOf(trait) !== -1)
                     ringness++;
             });
-        if (val.planet != undefined) {
-            if (val.planet == "Asgard" && val.age <= UniverseDefs_1.MarvelUniverse.AsgardianMaxAge)
-                marvelness++;
-            if (val.planet == "Kashyyk" && val.age <= UniverseDefs_1.StarWarsUniverse.WookieMaxAge)
-                starwarness++;
-            if (val.planet == "Endor" && val.age <= UniverseDefs_1.StarWarsUniverse.EwokMaxAge)
-                starwarness++;
-            if (val.planet == "Betelgeuse" &&
-                val.age <= UniverseDefs_1.HitchhickersUniverse.BetelgeusianMaxAge)
-                hitchness++;
-            if (val.planet == "Vogsphere" &&
-                val.age <= UniverseDefs_1.HitchhickersUniverse.VogonMaxAge)
-                hitchness++;
-            if (val.planet == "Earth" &&
-                val.age <= UniverseDefs_1.LordOfTheRingsUniverse.DwarfMaxAge)
-                ringness++;
+        if (val.isHumanoid != undefined && val.isHumanoid) {
+            marvelness++;
+            hitchness++;
+            ringness++;
         }
+        else {
+            starwarness++;
+            hitchness++;
+        }
+        if (val.age <= UniverseDefs_1.MarvelUniverse.AsgardianMaxAge)
+            marvelness++;
+        if (val.age <= UniverseDefs_1.StarWarsUniverse.WookieMaxAge || val.age <= UniverseDefs_1.StarWarsUniverse.EwokMaxAge)
+            starwarness++;
+        if (val.age <= UniverseDefs_1.HitchhickersUniverse.BetelgeusianMaxAge || val.age <= UniverseDefs_1.HitchhickersUniverse.VogonMaxAge)
+            hitchness++;
+        if (val.age <= UniverseDefs_1.LordOfTheRingsUniverse.DwarfMaxAge)
+            ringness++;
         var maxPoints = Math.max(Math.max(marvelness, starwarness), Math.max(ringness, hitchness));
+        if (marvelness == maxPoints)
+            numberOfMaxPoints++;
+        if (starwarness == maxPoints)
+            numberOfMaxPoints++;
+        if (ringness == maxPoints)
+            numberOfMaxPoints++;
+        if (hitchness == maxPoints)
+            numberOfMaxPoints++;
+        //if there is more than one max value, return "undetermined"
+        if (numberOfMaxPoints > 1)
+            return "undetermined";
         switch (maxPoints) {
             case marvelness:
                 return "Marvel";
@@ -86,7 +87,22 @@ var Program = /** @class */ (function () {
             case ringness:
                 return "Lord of Rings";
         }
-        return "";
+        return "undetermined";
+    };
+    return Clasify;
+}());
+var Program = /** @class */ (function () {
+    function Program() {
+    }
+    Program.saveToFile = function (filename, data) {
+        fs.writeFile(filename, JSON.stringify(data, null, 2), function (err) {
+            if (err) {
+                console.error("Error writing file ".concat(filename, ":"), err);
+            }
+            else {
+                console.log("File ".concat(filename, " has been saved."));
+            }
+        });
     };
     Program.Main = function () {
         var creatureList = input.input.map(function (val) {
@@ -94,7 +110,7 @@ var Program = /** @class */ (function () {
         });
         var creaturesLists = new CreaturesLists();
         creatureList.forEach(function (val) {
-            switch (Program.Classification(val)) {
+            switch (Clasify.Classification(val)) {
                 case "Marvel":
                     creaturesLists.Marvel.push(val);
                     break;
@@ -107,9 +123,12 @@ var Program = /** @class */ (function () {
                 case "Lord of Rings":
                     creaturesLists.Lord_of_rings.push(val);
                     break;
+                default:
+                    console.log("Unknown Universe:", val.id);
+                    break;
             }
         });
-        console.log(creaturesLists); // Save each universe's creature list to its own file
+        console.log(creaturesLists);
         Program.saveToFile("./resources/MarvelCreatures.json", creaturesLists.Marvel);
         Program.saveToFile("./resources/StarWarsCreatures.json", creaturesLists.Star_Wars);
         Program.saveToFile("./resources/HitchhickersCreatures.json", creaturesLists.Hitchhickers);

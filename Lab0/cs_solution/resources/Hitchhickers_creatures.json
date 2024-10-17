@@ -48,6 +48,15 @@
     ]
   },
   {
+    "id": 18,
+    "isHumanoid": false,
+    "planet": null,
+    "age": null,
+    "traits": [
+      "BULKY"
+    ]
+  },
+  {
     "id": 21,
     "isHumanoid": null,
     "planet": null,
