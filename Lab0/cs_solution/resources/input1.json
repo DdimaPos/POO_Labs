@@ -1,0 +1,9 @@
+{
+  "input": [
+    {
+      "id": 20,
+      "isHumanoid": true,
+      "traits": ["BULKY"]
+    }
+  ]
+}
