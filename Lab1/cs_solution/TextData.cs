@@ -28,7 +28,7 @@ record TextData(
         text.Count(val => char.IsAsciiLetter(val) && !"aeuiohAEUIOH".Contains(val));
 
     private static int CountSentences(string text) =>
-        Regex.Matches(text, @"[!?.](/s | $)").Count;
+        Regex.Matches(text, @"[!?.]").Count;
     
     private static string? FindLongWord(string text){
         MatchCollection matches = Regex.Matches(text, @"\w+");
