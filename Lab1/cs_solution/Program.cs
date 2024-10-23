@@ -12,7 +12,7 @@
         Console.WriteLine("Flags:");
         Console.WriteLine("-h, --help    Display this help information.");
     }
-    
+
     static void Task1()
     {
         Display monitor1 = new Display(1920, 1080, 700, "Monitor1");
@@ -26,7 +26,7 @@
         monitor3.CompareWithMonitor(monitor2);
         Console.WriteLine();
     }
-    
+
     static void Task2(string[] arg)
     {
 
@@ -36,10 +36,24 @@
             Console.WriteLine(data);
         }
     }
-    
+
     static void Task3()
     {
+        Assistant assistant = new Assistant("Assistant1");
+        Display monitor1 = new Display(1920, 1080, 700, "Monitor1");
+        Display monitor2 = new Display(2560, 1440, 600, "Monitor2");
+        Display monitor3 = new Display(3840, 2160, 400, "Monitor3");
 
+        assistant.AssignDisplay(monitor1);
+        assistant.AssignDisplay(monitor2);
+        assistant.AssignDisplay(monitor3);
+
+        assistant.Assist();
+
+        assistant.BuyDisplay(monitor3);
+        Console.WriteLine();
+
+        assistant.Assist();
     }
 
     static void Task4(string[] arg)
@@ -50,12 +64,12 @@
             Console.WriteLine(data);
         }
     }
-    
+
     static void TaskBonus(string[] args)
     {
 
     }
-    
+
     static void Main(string[] args)
     {
         if (args.Length == 0 || args[0] == "-h" || args[0] == "--help")

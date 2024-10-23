@@ -1,4 +1,4 @@
-record Display(
+public record Display(
     int Width,
     int Height,
     float Ppi,
