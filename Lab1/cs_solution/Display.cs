@@ -1,21 +1,23 @@
-class Display
+record Display(
+    int Width,
+    int Height,
+    float Ppi,
+    string Model
+        )
 {
-    public int Width;
-    public int Height;
-    public float Ppi;
-    public string Model;
 
     private int GetArea()
     {
         return Width * Height;
     }
 
-    private void ShowResult(int result, string characteristic, Display m){
+    private void ShowResult(int result, string characteristic, Display m)
+    {
         switch (result)
         {
             case -1:
                 Console.WriteLine($"{m.Model} has bigger {characteristic} than {Model}");
-            break;
+                break;
             case 1:
                 Console.WriteLine($"{Model} has bigger {characteristic} than {m.Model}");
                 break;
@@ -26,14 +28,6 @@ class Display
                 Console.WriteLine($"Couldn't determine the {characteristic}");
                 break;
         }
-    }
-
-    public Display(int width, int height, float ppi, string model)
-    {
-        Width = width;
-        Height = height;
-        Ppi = ppi;
-        Model = model;
     }
 
     public void CompareSize(Display m)
