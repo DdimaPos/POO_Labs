@@ -15,8 +15,26 @@ var Programm = /** @class */ (function () {
         monitor3.CompareWithMonitor(monitor2);
         console.log();
     };
+    Programm.Task2 = function (args) {
+        var dataList = modules_1.FileReader.ReadFileData(args);
+        dataList.forEach(function (data) { return console.log(data); });
+    };
+    Programm.Task3 = function (args) {
+        var assistant = new modules_1.Assistant("Assistant1");
+        var monitor1 = new modules_1.Display(1920, 1080, 700, "Monitor1");
+        var monitor2 = new modules_1.Display(2560, 1440, 600, "Monitor2");
+        var monitor3 = new modules_1.Display(3840, 2160, 400, "Monitor3");
+        assistant.AssignDisplay(monitor1);
+        assistant.AssignDisplay(monitor2);
+        assistant.AssignDisplay(monitor3);
+        assistant.Assist();
+        assistant.BuyDisplay(monitor3);
+        assistant.Assist();
+    };
     Programm.Main = function (Args) {
-        Programm.Task1();
+        //Programm.Task1();
+        //Programm.Task2(Args);
+        Programm.Task3(Args);
     };
     return Programm;
 }());

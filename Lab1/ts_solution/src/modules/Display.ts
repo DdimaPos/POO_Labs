@@ -17,7 +17,7 @@ export class Display {
     console.log(answers[result]);
   }
 
-  public CompareSize(m: Display): void {
+  CompareSize(m: Display): void {
     var characteristic = "screen size";
     var currentSize = this.GetArea();
     var mSize = m.GetArea();
@@ -27,7 +27,7 @@ export class Display {
     if (diff > 0) this.ShowResult(1, characteristic, m);
   }
 
-  public CompareSharpness(m: Display): void {
+  CompareSharpness(m: Display): void {
     var characteristic = "sharpness";
     var diff = this.Ppi - m.Ppi;
     if (diff === 0) this.ShowResult(0, characteristic, m);
@@ -35,7 +35,7 @@ export class Display {
     if (diff > 0) this.ShowResult(1, characteristic, m);
   }
 
-  public CompareWithMonitor(m: Display) {
+  CompareWithMonitor(m: Display) {
     console.log(`Overall comparison of monitors\n
                  --------------------------------`);
     this.CompareSize(m);
