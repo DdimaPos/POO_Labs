@@ -43,27 +43,35 @@ var FileReader = /** @class */ (function () {
     function FileReader() {
     }
     FileReader.ReadFileData = function (paths) {
-        var _this = this;
-        var dataList = new Array(paths.length);
-        paths.forEach(function (path) { return __awaiter(_this, void 0, void 0, function () {
-            var text, err_1;
+        return __awaiter(this, void 0, void 0, function () {
+            var dataList, _i, paths_1, path, text, err_1;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        _a.trys.push([0, 2, , 3]);
-                        return [4 /*yield*/, fs_1.promises.readFile(path, "utf-8")];
+                        dataList = [];
+                        _i = 0, paths_1 = paths;
+                        _a.label = 1;
                     case 1:
+                        if (!(_i < paths_1.length)) return [3 /*break*/, 6];
+                        path = paths_1[_i];
+                        _a.label = 2;
+                    case 2:
+                        _a.trys.push([2, 4, , 5]);
+                        return [4 /*yield*/, fs_1.promises.readFile(path, "utf-8")];
+                    case 3:
                         text = _a.sent();
                         dataList.push(TextData_1.TextData.ProcessText(path, text));
-                        return [3 /*break*/, 3];
-                    case 2:
+                        return [3 /*break*/, 5];
+                    case 4:
                         err_1 = _a.sent();
-                        throw new Error("Error occured: ".concat(err_1));
-                    case 3: return [2 /*return*/];
+                        throw new Error("Error occurred: ".concat(err_1));
+                    case 5:
+                        _i++;
+                        return [3 /*break*/, 1];
+                    case 6: return [2 /*return*/, dataList];
                 }
             });
-        }); });
-        return dataList;
+        });
     };
     return FileReader;
 }());
