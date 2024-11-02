@@ -1,0 +1,15 @@
+/home/starplatinum/Documents/TUM_info/Sem_3/OOP/POO_Labs/Lab2/cs_solution/bin/Debug/net8.0/cs_solution
+/home/starplatinum/Documents/TUM_info/Sem_3/OOP/POO_Labs/Lab2/cs_solution/bin/Debug/net8.0/cs_solution.deps.json
+/home/starplatinum/Documents/TUM_info/Sem_3/OOP/POO_Labs/Lab2/cs_solution/bin/Debug/net8.0/cs_solution.runtimeconfig.json
+/home/starplatinum/Documents/TUM_info/Sem_3/OOP/POO_Labs/Lab2/cs_solution/bin/Debug/net8.0/cs_solution.dll
+/home/starplatinum/Documents/TUM_info/Sem_3/OOP/POO_Labs/Lab2/cs_solution/bin/Debug/net8.0/cs_solution.pdb
+/home/starplatinum/Documents/TUM_info/Sem_3/OOP/POO_Labs/Lab2/cs_solution/obj/Debug/net8.0/cs_solution.GeneratedMSBuildEditorConfig.editorconfig
+/home/starplatinum/Documents/TUM_info/Sem_3/OOP/POO_Labs/Lab2/cs_solution/obj/Debug/net8.0/cs_solution.AssemblyInfoInputs.cache
+/home/starplatinum/Documents/TUM_info/Sem_3/OOP/POO_Labs/Lab2/cs_solution/obj/Debug/net8.0/cs_solution.AssemblyInfo.cs
+/home/starplatinum/Documents/TUM_info/Sem_3/OOP/POO_Labs/Lab2/cs_solution/obj/Debug/net8.0/cs_solution.csproj.CoreCompileInputs.cache
+/home/starplatinum/Documents/TUM_info/Sem_3/OOP/POO_Labs/Lab2/cs_solution/obj/Debug/net8.0/cs_solution.sourcelink.json
+/home/starplatinum/Documents/TUM_info/Sem_3/OOP/POO_Labs/Lab2/cs_solution/obj/Debug/net8.0/cs_solution.dll
+/home/starplatinum/Documents/TUM_info/Sem_3/OOP/POO_Labs/Lab2/cs_solution/obj/Debug/net8.0/refint/cs_solution.dll
+/home/starplatinum/Documents/TUM_info/Sem_3/OOP/POO_Labs/Lab2/cs_solution/obj/Debug/net8.0/cs_solution.pdb
+/home/starplatinum/Documents/TUM_info/Sem_3/OOP/POO_Labs/Lab2/cs_solution/obj/Debug/net8.0/cs_solution.genruntimeconfig.cache
+/home/starplatinum/Documents/TUM_info/Sem_3/OOP/POO_Labs/Lab2/cs_solution/obj/Debug/net8.0/ref/cs_solution.dll

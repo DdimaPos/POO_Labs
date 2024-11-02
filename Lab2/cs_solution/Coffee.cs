@@ -1,9 +1,14 @@
-enum Intensity {LIGHT, NORMAL, STRONG};
 class Coffee{
-    Intensity coffeeIntensity;
-    const string name = "Coffee";
-
+    Intensity CoffeeIntensity;
+    const string Name = "Coffee";
+    public Coffee(Intensity intensity){
+        this.CoffeeIntensity = intensity;
+    }
     public virtual void PrintCoffeeDetails(){
-        Console.WriteLine($"{name} intensity: {coffeeIntensity}");
+        Console.WriteLine($"{Name} intensity: {CoffeeIntensity}");
+    }
+    public Coffee MakeCoffee(string coffeeName = Coffee.Name){
+        Console.WriteLine($"Making now a cup of {coffeeName}");
+        return this;
     }
 }
