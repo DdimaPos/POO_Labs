@@ -1,4 +1,4 @@
-class Cappuccino : Coffee
+/*class Cappuccino : Coffee
 {
     const string name = "Cappuccino";
     public int mlOfMilk;
@@ -16,4 +16,4 @@ class Cappuccino : Coffee
         Console.WriteLine($"Adding {mlOfMilk} Ml of Milk");
         return this;
     }
-}
+}*/

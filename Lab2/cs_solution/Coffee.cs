@@ -1,4 +1,4 @@
-class Coffee{
+/*class Coffee{
     Intensity CoffeeIntensity;
     const string Name = "Coffee";
     public Coffee(Intensity intensity){
@@ -11,4 +11,4 @@ class Coffee{
         Console.WriteLine($"Making now a cup of {coffeeName}");
         return this;
     }
-}
+}*/

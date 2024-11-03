@@ -1,4 +1,4 @@
-class PumpkinSpiceLatte : Cappuccino
+/*class PumpkinSpiceLatte : Cappuccino
 {
     const string name = "PumpkinSpiceLatte";
     int mgOfPumpkinSpice;
@@ -17,4 +17,4 @@ class PumpkinSpiceLatte : Cappuccino
         Console.WriteLine($"Add {mgOfPumpkinSpice} Mg of Pumpkin Spice");
         return this;
     }
-}
+}*/

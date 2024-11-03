@@ -1,5 +1,4 @@
-enum SyrupType { MACADINA, VANILLA, COCONUT, CARAMEL, CHOCOLATE, POPCORN };
-class SyrupCappuccino : Cappuccino
+/*class SyrupCappuccino : Cappuccino
 {
     const string name = "SyrupCappuccino";
     SyrupType syrup;
@@ -18,4 +17,4 @@ class SyrupCappuccino : Cappuccino
         Console.WriteLine($"Add the {syrup} syrup");
         return this; 
     }
-}
+}*/
