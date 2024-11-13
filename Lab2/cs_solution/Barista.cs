@@ -1,4 +1,4 @@
-using CoffeeClasses;
+using CoffeeShop;
 class Barista{
     public void ProcessOrders(string[] orders){
         foreach(var order in orders){
@@ -25,6 +25,7 @@ class Barista{
                 break;
             case "SyrupCappuccino":
                 SyrupCappuccino syrupCappuccino = new SyrupCappuccino(Intensity.NORMAL, 150, SyrupType.CARAMEL);
+                syrupCappuccino.MakeCoffee();
                 break;
             default:
                 Console.WriteLine($"Not a valid coffee type: {order}");

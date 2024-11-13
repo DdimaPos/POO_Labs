@@ -1,4 +1,4 @@
-namespace CoffeeClasses
+/*namespace CoffeeClasses
 {
     class Coffee
     {
@@ -104,4 +104,4 @@ namespace CoffeeClasses
             return this;
         }
     }
-}
+}*/

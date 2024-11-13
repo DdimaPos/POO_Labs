@@ -1,4 +1,5 @@
-/*class Americano : Coffee
+namespace CoffeeShop;
+internal class Americano : Coffee
 {
     const string name = "Americano";
     int MlOfWater;
@@ -20,4 +21,4 @@
         Console.WriteLine($"Adding {MlOfWater} Ml of water");
         return this;
     }
-}*/
+}

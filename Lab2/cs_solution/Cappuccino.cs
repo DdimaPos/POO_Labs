@@ -1,4 +1,6 @@
-/*class Cappuccino : Coffee
+namespace CoffeeShop;
+
+internal class Cappuccino : Coffee
 {
     const string name = "Cappuccino";
     public int mlOfMilk;
@@ -16,4 +18,4 @@
         Console.WriteLine($"Adding {mlOfMilk} Ml of Milk");
         return this;
     }
-}*/
+}

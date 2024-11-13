@@ -1,4 +1,5 @@
-/*class PumpkinSpiceLatte : Cappuccino
+namespace CoffeeShop;
+internal class PumpkinSpiceLatte : Cappuccino
 {
     const string name = "PumpkinSpiceLatte";
     int mgOfPumpkinSpice;
@@ -17,4 +18,4 @@
         Console.WriteLine($"Add {mgOfPumpkinSpice} Mg of Pumpkin Spice");
         return this;
     }
-}*/
+}

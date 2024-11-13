@@ -1,8 +1,9 @@
-/*class SyrupCappuccino : Cappuccino
+namespace CoffeeShop;
+internal class SyrupCappuccino : Cappuccino
 {
     const string name = "SyrupCappuccino";
     SyrupType syrup;
-    SyrupCappuccino(Intensity intensity, int mlOfMilk, SyrupType syrup) : base(intensity, mlOfMilk)
+    public SyrupCappuccino(Intensity intensity, int mlOfMilk, SyrupType syrup) : base(intensity, mlOfMilk)
     {
         this.syrup = syrup;
     }
@@ -17,4 +18,4 @@
         Console.WriteLine($"Add the {syrup} syrup");
         return this; 
     }
-}*/
+}
