@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "ws3b3bkddtiFK7GrltA9EEdZ7iyr6AvnC+Iv9k/cMYpdDY2hSJuKa8WsK7aKXYsnZkavq486MwD3Jy1fEHyXJQ==",
+  "success": true,
+  "projectFilePath": "/home/starplatinum/Documents/TUM_info/Sem_3/OOP/POO_Labs/Lab2/cs_solution/cs_solution.csproj",
+  "expectedPackageFiles": [
+    "/home/starplatinum/.nuget/packages/microsoft.aspnetcore.app.ref/8.0.10/microsoft.aspnetcore.app.ref.8.0.10.nupkg.sha512"
+  ],
+  "logs": []
+}
