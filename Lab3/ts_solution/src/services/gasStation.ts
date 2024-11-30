@@ -1,6 +1,9 @@
 import { Refuelable } from "../interfaces/refuelable";
-class GasStation implements Refuelable{
-  refuel(carID: string): void {
+import { stats } from "./statistic";
+export class GasStation implements Refuelable{
+  refuel(carID: string, passengerType: string, consumption: number): void {
       console.log("Gas refuel for car", carID)
+      stats.addGasCars(consumption);
+      stats.addPassenger(passengerType);
   }
 }

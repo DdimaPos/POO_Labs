@@ -1,6 +1,8 @@
 import { Dineable } from "../interfaces/dineable";
-class RobotDiner implements Dineable{
+import { stats } from "./statistic";
+export class RobotDiner implements Dineable{
   serveDinner(carID: string): void {
       console.log(`Serving robots dinner for ${carID} `)
+      stats.addDinedRobots();
   }
 }
