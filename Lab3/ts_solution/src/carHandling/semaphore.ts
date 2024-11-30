@@ -69,7 +69,7 @@ export class Semaphore {
 
   unloadCounter(stationType: StationType): void {
     if (this.stationLoading[stationType] > 0) {
-      this.stationLoading[stationType]--;
+      this.stationLoading[stationType]=0;
     } else {
       console.warn(`Cannot unload from an empty station: ${stationType}`);
     }
