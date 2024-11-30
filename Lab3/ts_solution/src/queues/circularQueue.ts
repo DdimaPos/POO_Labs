@@ -1,4 +1,4 @@
-import { Queue } from "./queueInterface";
+import { Queue } from "./../interfaces/queueInterface";
 export class CircularQueue<T> implements Queue<T> {
   //https://www.geeksforgeeks.org/introduction-to-circular-queue/
   private items: (T | null)[];
