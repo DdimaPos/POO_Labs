@@ -10,11 +10,6 @@ export class CarStation {
     private queue: Queue<Car>,
   ) {}
 
-  /*constructor(diningService: Dineable, refuelingService: Refuelable, queueType: Queue<Car>){
-    this.diningService=diningService;
-    this.refuelingService = refuelingService;
-    this.queue = queueType;
-  }*/
   serveCars(): void {
     while (!this.queue.isEmpty()) {
       var toBeServed: Car | undefined = this.queue.dequeue();
