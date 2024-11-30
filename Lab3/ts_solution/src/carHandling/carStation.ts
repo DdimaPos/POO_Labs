@@ -1,6 +1,4 @@
-import { Dineable } from "../interfaces/dineable";
-import { Refuelable } from "../interfaces/refuelable";
-import { Queue } from "../interfaces/queueInterface";
+import { Dineable , Refuelable, Queue} from "../interfaces"
 import { Car } from "./car";
 
 export class CarStation {

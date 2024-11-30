@@ -7,7 +7,7 @@ import { Car } from "./car";
 import { CarStation } from "./carStation";
 import { Semaphore } from "./semaphore";
 describe("Semaphore testing", () => {
-  test("Test normal guiding", () => {
+  test("Normal guiding", () => {
     var mockCars = [
       {
         id: 1,
@@ -65,7 +65,7 @@ describe("Semaphore testing", () => {
     expect(semaphore.getLoading().elRobots).toBe(1);
   });
 
-  test("Test smart guiding", () => {
+  test("Smart guiding", () => {
     var mockCars = [
       {
         id: 5,
@@ -113,7 +113,7 @@ describe("Semaphore testing", () => {
     expect(semaphore.getLoading().elRobots).toBe(1);
   });
 
-  test("Test unloading", () => {
+  test("Unloading", () => {
     var mockCars = [
       {
         id: 5,
@@ -157,12 +157,44 @@ describe("Semaphore testing", () => {
     mockCars.forEach((car: Car): void => {
       semaphore.guideCar(car);
     });
-    
+
     {
       elPeopleStation.serveCars();
       semaphore.unloadCounter("elPeople");
       expect(semaphore.getLoading().elPeople).toBe(0);
     }
+  });
 
+  test("Error handling", () => {
+    var mockCars = [
+      {
+        id: 5,
+        type: "ELECTRIC",
+        passengers: "PEOPLE",
+        isDining: true,
+        consumption: 43,
+      },
+    ];
+    var peopleDiner = new PeopleDiner();
+    var robotDiner = new RobotDiner();
+    var gasStation = new GasStation();
+    var elStation = new ElectricStation();
+    var carList = new LinkedList<Car>();
+    var gasPeopleStation = new CarStation(peopleDiner, gasStation, carList);
+    var elPeopleStation = new CarStation(peopleDiner, elStation, carList);
+    var gasRobotsStation = new CarStation(robotDiner, gasStation, carList);
+    var elRobotsStation = new CarStation(robotDiner, elStation, carList);
+
+    var semaphore = new Semaphore(
+      gasPeopleStation,
+      gasRobotsStation,
+      elPeopleStation,
+      elRobotsStation,
+    );
+    expect(() => {
+      mockCars.forEach((car: Car): void => {
+        semaphore.guideCar(car);
+      });
+    }).toThrow("No suitable stations");
   });
 });
