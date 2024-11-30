@@ -1,3 +1,3 @@
 export interface Refuelable{
-  refuel(carID: string, passengerType: string, consumption: number): void;
+  refuel(carID: number, passengerType: string, consumption: number): void;
 }

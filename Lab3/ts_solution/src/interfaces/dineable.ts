@@ -1,3 +1,3 @@
 export interface Dineable{
-  serveDinner(carID: string):void;
+  serveDinner(carID: number):void;
 }
