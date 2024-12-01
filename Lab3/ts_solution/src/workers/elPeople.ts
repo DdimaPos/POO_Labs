@@ -2,6 +2,7 @@ import { workerData, parentPort } from "worker_threads";
 import { ElectricStation, PeopleDiner } from "../services";
 import { CircularQueue } from "../queues";
 import { Car, CarStation } from "../carHandling";
+import { StationStats } from "../interfaces/stationStats";
 
 class ElPeopleWorker {
   static Main() {
@@ -18,8 +19,8 @@ class ElPeopleWorker {
 
     setInterval(() => {
       if (!carStation.isEmpty()) {
-        carStation.serveCars();
-        parentPort?.postMessage("El People station finished serving cars");
+        var servingStats: StationStats = carStation.serveCars();
+        parentPort?.postMessage(servingStats);
       }
     }, 4900);
   }

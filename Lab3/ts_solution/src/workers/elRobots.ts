@@ -1,27 +1,26 @@
-import { workerData, parentPort } from "worker_threads";
-import { GasStation, RobotDiner } from "../services";
+import { parentPort } from "worker_threads";
+import { ElectricStation, RobotDiner } from "../services";
 import { LinkedList } from "../queues";
 import { Car, CarStation } from "../carHandling";
+import { StationStats } from "../interfaces";
 
-class GasRobotsWorker {
+class ElRobotsWorker {
   static Main() {
-    var station = new GasStation();
+    var station = new ElectricStation();
     var diner = new RobotDiner();
     var carList = new LinkedList<Car>();
-    //console.log("message from the thread")
     var carStation = new CarStation(diner, station, carList);
 
     parentPort?.on("message", (car) => {
-      //console.log("New car to gasPeople station", car);
       carStation.addCar(car);
     });
 
     setInterval(() => {
       if (!carStation.isEmpty()) {
-        carStation.serveCars();
-        parentPort?.postMessage("El Robot station finished serving cars");
+        var servingStats: StationStats = carStation.serveCars();
+        parentPort?.postMessage(servingStats);
       }
     }, 3500);
   }
 }
-GasRobotsWorker.Main();
+ElRobotsWorker.Main();

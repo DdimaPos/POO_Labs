@@ -2,6 +2,7 @@ import { parentPort } from "worker_threads";
 import { GasStation, RobotDiner } from "../services";
 import { ArrayQueue } from "../queues";
 import { Car, CarStation } from "../carHandling";
+import { StationStats } from "../interfaces/stationStats";
 
 class GasRobotsWorker {
   static Main() {
@@ -18,8 +19,9 @@ class GasRobotsWorker {
 
     setInterval(() => {
       if (!carStation.isEmpty()) {
-        carStation.serveCars();
-        parentPort?.postMessage("El People station finished serving cars");
+        var servingStats: StationStats = carStation.serveCars();
+        //console.log(servingStats)
+        parentPort?.postMessage(servingStats);
       }
     }, 4000);
   }

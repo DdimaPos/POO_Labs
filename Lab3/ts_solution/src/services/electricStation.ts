@@ -3,7 +3,7 @@ import { stats } from "./statistic";
 export class ElectricStation implements Refuelable{
   refuel(carID: number, passengerType: string, consumption: number): void {
       console.log("Electric refuel for car", carID)
-      stats.addElectricCars(consumption);
-      stats.addPassenger(passengerType);
+      stats.addElectricCars(1, consumption);
+      stats.addPassenger(passengerType, 1);
   }
 }
