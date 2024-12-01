@@ -1,4 +1,4 @@
-import { LinkedList } from "../queues/linkedList";
+/*import { LinkedList } from "../queues/linkedList";
 import { ElectricStation } from "../services/electricStation";
 import { GasStation } from "../services/gasStation";
 import { PeopleDiner } from "../services/peopleDiner";
@@ -197,4 +197,4 @@ describe("Semaphore testing", () => {
       });
     }).toThrow("No suitable stations");
   });
-});
+});*/

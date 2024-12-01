@@ -1,5 +1,6 @@
 import { Car } from "./car";
 import { CarStation } from "./carStation";
+import { Worker } from "node:worker_threads";
 type StationType = "gasPeople" | "gasRobots" | "elPeople" | "elRobots";
 export class Semaphore {
   private stationLoading = {
@@ -16,7 +17,7 @@ export class Semaphore {
     "ELECTRIC-ROBOTS-true": "elRobots",
   };
   constructor(
-    private gasPeople: CarStation,
+    private gasPeople: Worker,
     private gasRobots: CarStation,
     private elPeople: CarStation,
     private elRobots: CarStation,
@@ -27,7 +28,9 @@ export class Semaphore {
     var primaryStation = `${car.type}-${car.passengers}-${car.isDining}`;
     switch (primaryStation) {
       case "GAS-PEOPLE-true":
-        this.gasPeople.addCar(car);
+        //send to worker
+        this.gasPeople.postMessage(car);
+        console.log("tried to send message");
         this.stationLoading.gasPeople++;
         return;
       case "ELECTRIC-PEOPLE-true":
@@ -49,7 +52,9 @@ export class Semaphore {
         this.gasRobots.addCar(car);
         this.stationLoading.gasRobots++;
       } else {
-        this.gasPeople.addCar(car);
+        //this.gasPeople.addCar(car);
+        this.gasPeople.postMessage(car);
+        console.log("tried to send message");
         this.stationLoading.gasPeople++;
       }
       return;

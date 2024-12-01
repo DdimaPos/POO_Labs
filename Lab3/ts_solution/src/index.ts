@@ -20,18 +20,29 @@ class Program {
 
     var carList = new LinkedList<Car>();
 
-    var gasPeopleStation = new CarStation(peopleDiner, gasStation, carList);
+    //var gasPeopleStation = new CarStation(peopleDiner, gasStation, carList);
     var elPeopleStation = new CarStation(peopleDiner, elStation, carList);
     var gasRobotsStation = new CarStation(robotDiner, gasStation, carList);
     var elRobotsStation = new CarStation(robotDiner, elStation, carList);
 
+    //////try to pass  worker to semaphore
+    var gasPeopleWorker = new Worker(
+      path.join(__dirname, "/workers/gasPeople.js"),
+      {
+        workerData: {
+          path: "gasPeople.ts",
+        },
+      },
+    );
+
+    //////
     var semaphore = new Semaphore(
-      gasPeopleStation,
+      gasPeopleWorker,
       gasRobotsStation,
       elPeopleStation,
       elRobotsStation,
     );
-
+    console.log("initialized semaphore");
     var files = fs.readdirSync(path.join(__dirname, "../sources/queue"));
 
     files.forEach((file) => {
@@ -40,6 +51,7 @@ class Program {
         const data = fs.readFileSync(filePath, "utf-8");
         const car: Car = JSON.parse(data); // Parse JSON to a Car object
         semaphore.guideCar(car); // Call the semaphore method
+        console.log("guided the car");
       } catch (error) {
         console.error(`Failed to process file ${file}:`, error);
       }
@@ -60,6 +72,6 @@ class Program {
     });*/
   }
 }
-var files = fs.readdirSync(path.join(__dirname, "../sources/queue"));
-console.log(files);
+//var files = fs.readdirSync(path.join(__dirname, "../sources/queue"));
+//console.log(files);
 Program.Main();
