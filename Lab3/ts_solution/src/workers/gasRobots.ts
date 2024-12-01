@@ -9,18 +9,15 @@ class GasRobotsWorker {
     var station = new GasStation();
     var diner = new RobotDiner();
     var carList = new ArrayQueue<Car>();
-    //console.log("message from the thread")
     var carStation = new CarStation(diner, station, carList);
 
     parentPort?.on("message", (car) => {
-      //console.log("New car to gasPeople station", car);
       carStation.addCar(car);
     });
 
     setInterval(() => {
       if (!carStation.isEmpty()) {
         var servingStats: StationStats = carStation.serveCars();
-        //console.log(servingStats)
         parentPort?.postMessage(servingStats);
       }
     }, 4000);

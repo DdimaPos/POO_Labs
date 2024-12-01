@@ -9,11 +9,9 @@ class GasPeopleWorker {
     var station = new GasStation();
     var diner = new PeopleDiner();
     var carList = new LinkedList<Car>();
-    //console.log("message from the thread")
     var carStation = new CarStation(diner, station, carList);
 
     parentPort?.on("message", (car) => {
-      //console.log("New car to gasPeople station", car);
       carStation.addCar(car);
     });
 
@@ -26,4 +24,3 @@ class GasPeopleWorker {
   }
 }
 GasPeopleWorker.Main();
-//parentPort?.postMessage("Abudabi");

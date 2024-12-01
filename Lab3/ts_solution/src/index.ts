@@ -7,7 +7,6 @@ import { ModifyStatistics } from "./utils/modifyStatistics";
 
 class Program {
   static DeclareWorkers() {
-    //////try to pass  worker to semaphore
     var gasPeopleWorker = new Worker(
       path.join(__dirname, "/workers/gasPeople.js"),
       {
@@ -65,7 +64,7 @@ class Program {
         stats.addPassenger,
         stats,
       );
-      semaphore.unloadCounter("gasRobots");
+      semaphore.unloadCounter("gasRobots"); //if have time try to pass parentport and decrement1 by 1
     });
 
     gasPeopleWorker.on("message", (stationStats) => {

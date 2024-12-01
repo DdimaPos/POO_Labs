@@ -1,8 +1,8 @@
-import { Dineable } from "../interfaces/dineable";
-import { stats } from "./statistic";
+import { StationStats , Dineable} from "../interfaces";
 export class PeopleDiner implements Dineable{
-  serveDinner(carID: number): void {
+  serveDinner(carID: number, servingStats: StationStats): void {
       console.log(`Serving people dinner for ${carID} `)
-      stats.addDinedPeople(1);
+      //cook in statistics
+      servingStats.dined+=1;
   }
 }

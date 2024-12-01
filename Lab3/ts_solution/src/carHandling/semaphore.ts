@@ -9,12 +9,6 @@ export class Semaphore {
     elRobots: 0,
   };
 
-  private stations = {
-    "GAS-PEOPLE-true": "gasPeople",
-    "GAS-ROBOTS-true": "gasRobots",
-    "ELECTRIC-PEOPLE-true": "elPeople",
-    "ELECTRIC-ROBOTS-true": "elRobots",
-  };
   constructor(
     private gasPeople: Worker,
     private gasRobots: Worker,

@@ -1,9 +1,17 @@
-import { Refuelable } from "../interfaces/refuelable";
-import { stats } from "./statistic";
-export class ElectricStation implements Refuelable{
-  refuel(carID: number, passengerType: string, consumption: number): void {
-      console.log("Electric refuel for car", carID)
-      stats.addElectricCars(1, consumption);
-      stats.addPassenger(passengerType, 1);
+import { StationStats, Refuelable } from "../interfaces";
+import { PassengerTypeLowercase } from "../types";
+export class ElectricStation implements Refuelable {
+  refuel(
+    carID: number,
+    passengerType: string,
+    consumption: number,
+    servingStats: StationStats,
+  ): void {
+    console.log("Electric refuel for car", carID);
+    //cook in statistics
+    var modifiedPassengerType: PassengerTypeLowercase =
+      passengerType.toLowerCase() as PassengerTypeLowercase;
+    servingStats[modifiedPassengerType] += 1;
+    servingStats.consumption += consumption;
   }
 }

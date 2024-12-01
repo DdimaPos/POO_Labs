@@ -1,1 +1,1 @@
-export type PassengerType = "PEOPLE" | "ROBOTS";
+export type PassengerType = "PEOPLE" | "ROBOTS" | "people" | "robots";
