@@ -1,5 +1,4 @@
 import { Car } from "./car";
-import { CarStation } from "./carStation";
 import { Worker } from "node:worker_threads";
 type StationType = "gasPeople" | "gasRobots" | "elPeople" | "elRobots";
 export class Semaphore {
@@ -18,9 +17,9 @@ export class Semaphore {
   };
   constructor(
     private gasPeople: Worker,
-    private gasRobots: CarStation,
-    private elPeople: CarStation,
-    private elRobots: CarStation,
+    private gasRobots: Worker,
+    private elPeople: Worker,
+    private elRobots: Worker,
   ) {}
 
   guideCar(car: Car): void {
@@ -28,43 +27,39 @@ export class Semaphore {
     var primaryStation = `${car.type}-${car.passengers}-${car.isDining}`;
     switch (primaryStation) {
       case "GAS-PEOPLE-true":
-        //send to worker
         this.gasPeople.postMessage(car);
-        console.log("tried to send message");
         this.stationLoading.gasPeople++;
         return;
       case "ELECTRIC-PEOPLE-true":
-        this.elPeople.addCar(car);
+        this.elPeople.postMessage(car);
         this.stationLoading.elPeople++;
         return;
       case "GAS-ROBOTS-true":
-        this.gasRobots.addCar(car);
+        this.gasRobots.postMessage(car);
         this.stationLoading.gasRobots++;
         return;
       case "ELECTRIC-ROBOTS-true":
-        this.elRobots.addCar(car);
+        this.elRobots.postMessage(car);
         this.stationLoading.elRobots++;
         return;
     }
     //guide if not dining
     if (car.type === "GAS") {
       if (this.stationLoading.gasPeople > this.stationLoading.gasRobots) {
-        this.gasRobots.addCar(car);
+        this.gasRobots.postMessage(car);
         this.stationLoading.gasRobots++;
       } else {
-        //this.gasPeople.addCar(car);
         this.gasPeople.postMessage(car);
-        console.log("tried to send message");
         this.stationLoading.gasPeople++;
       }
       return;
     }
     if (car.type === "ELECTRIC") {
       if (this.stationLoading.elPeople > this.stationLoading.elRobots) {
-        this.elRobots.addCar(car);
+        this.elRobots.postMessage(car);
         this.stationLoading.elRobots++;
       } else {
-        this.elPeople.addCar(car);
+        this.elPeople.postMessage(car);
         this.stationLoading.elPeople++;
       }
       return;

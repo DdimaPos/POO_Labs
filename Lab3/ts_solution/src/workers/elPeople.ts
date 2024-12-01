@@ -1,13 +1,13 @@
 import { workerData, parentPort } from "worker_threads";
-import { GasStation, PeopleDiner } from "../services";
-import { LinkedList } from "../queues";
+import { ElectricStation, PeopleDiner } from "../services";
+import { CircularQueue } from "../queues";
 import { Car, CarStation } from "../carHandling";
 
-class GasPeopleWorker {
+class ElPeopleWorker {
   static Main() {
-    var station = new GasStation();
+    var station = new ElectricStation();
     var diner = new PeopleDiner();
-    var carList = new LinkedList<Car>();
+    var carList = new CircularQueue<Car>(30);
     //console.log("message from the thread")
     var carStation = new CarStation(diner, station, carList);
 
@@ -19,10 +19,9 @@ class GasPeopleWorker {
     setInterval(() => {
       if (!carStation.isEmpty()) {
         carStation.serveCars();
-        parentPort?.postMessage("Gas People station finished serving cars");
+        parentPort?.postMessage("El People station finished serving cars");
       }
-    }, 3800);
+    }, 4900);
   }
 }
-GasPeopleWorker.Main();
-//parentPort?.postMessage("Abudabi");
+ElPeopleWorker.Main();
