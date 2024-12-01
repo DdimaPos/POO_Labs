@@ -1,4 +1,4 @@
-import { CircularQueue } from "./circularQueue";
+import { CircularQueue } from "./../circularQueue";
 describe("Circular Queue testing", () => {
   test("Insertion test", () => {
     var queue = new CircularQueue<number>(5);

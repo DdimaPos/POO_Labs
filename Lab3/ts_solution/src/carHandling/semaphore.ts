@@ -44,7 +44,7 @@ export class Semaphore {
         return;
     }
     //guide if not dining
-    if (car.type === "GAS") {
+    if (car.type === "GAS" && !car.isDining) {
       if (this.stationLoading.gasPeople > this.stationLoading.gasRobots) {
         this.gasRobots.postMessage(car);
         this.stationLoading.gasRobots++;
@@ -54,7 +54,7 @@ export class Semaphore {
       }
       return;
     }
-    if (car.type === "ELECTRIC") {
+    if (car.type === "ELECTRIC" && !car.isDining) {
       if (this.stationLoading.elPeople > this.stationLoading.elRobots) {
         this.elRobots.postMessage(car);
         this.stationLoading.elRobots++;

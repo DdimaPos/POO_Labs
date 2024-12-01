@@ -1,7 +1,7 @@
-import { LinkedList } from "./linkedList";
-describe("Linked List test", () => {
+import { ArrayQueue } from "./../arrayQueue";
+describe("Array Qeue", () => {
   test("Insertion test", () => {
-    var queue = new LinkedList<number>();
+    var queue = new ArrayQueue<number>();
     expect(queue.isEmpty()).toBe(true);
     queue.enqueue(1);
     queue.enqueue(2);
@@ -11,7 +11,7 @@ describe("Linked List test", () => {
     queue.enqueue(5);
   });
   test("Deletion test", () => {
-    var queue = new LinkedList<number>();
+    var queue = new ArrayQueue<number>();
     expect(queue.dequeue()).toBeUndefined();
     queue.enqueue(1);
     expect(queue.dequeue()).toBe(1);

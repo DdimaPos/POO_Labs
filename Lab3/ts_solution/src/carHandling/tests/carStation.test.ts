@@ -1,11 +1,7 @@
-import { CircularQueue } from "../queues/circularQueue";
-import { LinkedList } from "../queues/linkedList";
-import { ElectricStation } from "../services/electricStation";
-import { GasStation } from "../services/gasStation";
-import { PeopleDiner } from "../services/peopleDiner";
-import { RobotDiner } from "../services/robotDiner";
-import { Car } from "./car";
-import { CarStation } from "./carStation";
+import { CircularQueue , LinkedList} from "../../queues";
+import { ElectricStation, GasStation, PeopleDiner, RobotDiner } from "../../services";
+import { Car } from "./../car";
+import { CarStation } from "./../carStation";
 describe("Car Station testing", () => {
   test("Test serving", () => {
     var peopleDiner = new PeopleDiner();

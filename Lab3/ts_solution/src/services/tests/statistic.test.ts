@@ -1,4 +1,4 @@
-import { Statistic } from "./statistic";
+import { Statistic } from "./../statistic";
 describe("Statistics tests", () => {
   test("People passenger adding", () => {
     var stats = new Statistic();
